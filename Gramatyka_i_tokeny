@@ -13,7 +13,6 @@ declaration
 function_definition  
     : (variable_type | VOID) identifier LEFTROUND RIGHTROUND LEFTCURLY 
       (statement | function_declaration)*  RIGHTCURLY   
-       // można ewentualnie rozbić na wiele przypadków, tak aby typ zwracany pasował do typu funkcji
     ;
 
 
@@ -53,7 +52,7 @@ variable_type
 
 
 
-class_declaration
+class_definition
     : class_type CLASS identifier LEFTCURLY 
       (all_member_modifier? function_definition | all_member_modifier? variable_declaration SEMICOLON)+ RIGHTCURLY 
     ;
@@ -68,14 +67,13 @@ all_member_modifier
 
 
 variable_assignment
-    : identifier EQUALS expression
+    : identifier EQUAL expression
     ;
 
 
 
-
 expression
-    : rvalue?
+    : value?
     ;
 
 value
@@ -104,6 +102,24 @@ INTLIT      : [0-9]+;
 FLOATLIT    : [0-9]+ '.' [0-9]+;
 BOOLLIT     : (true | false);
 
+IF              : 'if';
+ELSE            : 'else';
+FOR             : 'for';
+WHILE           : 'while';
+DO              : 'do';
+RETURN          : 'return';
+
+CHAR            : 'char';
+SHORT           : 'short';
+INT             : 'int';
+LONG            : 'long';
+FLOAT           : 'float';
+DOUBLE          : 'double';
+VOID            : 'void';
+VAR             : 'var';
+DECIMAL         : 'decimal';
+BOOL            : 'bool';
+
 ASSIGN          : '=';
 ADD             : '+';
 SUBSTRACT       : '-';
@@ -127,22 +143,3 @@ LEFTCURLY       : '{';
 RIGHTCURLY      : '}';
 
 SEMICOLON       : ';';
-
-IF              : 'if';
-ELSE            : 'else';
-FOR             : 'for';
-WHILE           : 'while';
-DO              : 'do';
-RETURN          : 'return';
-
-
-CHAR            : 'char';
-SHORT           : 'short';
-INT             : 'int';
-LONG            : 'long';
-FLOAT           : 'float';
-DOUBLE          : 'double';
-VOID            : 'void';
-VAR             : 'var';
-DECIMAL         : 'decimal';
-BOOL            : 'bool';
