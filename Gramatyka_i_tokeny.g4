@@ -144,3 +144,4 @@ LEFTCURLY       : '{';
 RIGHTCURLY      : '}';
 
 SEMICOLON       : ';';
+WHITESPACES     : [ \t\r\n]+ -> skip;
