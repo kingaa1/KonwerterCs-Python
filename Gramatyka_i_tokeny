@@ -1,0 +1,170 @@
+parser grammar CSharpParser;
+
+
+program
+    : (declaration | statement)* EOF
+    ;
+
+declaration
+    : variable_declaration | function_declaration | class_declaration | statement  // wykasować statement
+    ;
+
+
+
+function_declaration    // dodać definicję, usunąć deklarację
+    : function_header function_body
+    ;
+
+function_header
+    : return_type identifier OPEN_PARENS CLOSE_PARENS
+    ;
+
+function_body
+    : block';'
+    ;
+
+block
+    : OPEN_BRACE statement* CLOSE_BRACE  
+    ;
+
+statement
+    : variable_declaration ';'
+    | variable_assignment ';'
+    ;
+
+
+variable_declaration
+    : variable_type identifier ('=' expression)? 
+    ;
+
+variable_type
+    : VAR
+    | base_type
+    ;
+
+
+
+class_declaration
+    : CLASS identifier class_body ';'?
+    ;
+
+class_body
+    : OPEN_BRACE class_member_declarations? CLOSE_BRACE
+    ;
+
+class_member_declarations
+    : class_member_declaration+
+    ;
+
+class_member_declaration
+    : attributes? all_member_modifiers?  ////////////////////////////
+    ;
+
+attributes
+    : attribute_section+              ///////////////////////
+    ;
+
+attribute_section
+    : '[' (attribute_target ':')? attribute_list ','? ']'
+    ;
+
+attribute_target
+    : keyword
+    | identifier
+    ;
+
+attribute_list
+    : attribute (',' attribute)*
+    ;
+
+attribute
+    :  (
+        OPEN_PARENS (attribute_argument (',' attribute_argument)*)? CLOSE_PARENS
+    )?
+    ;
+
+attribute_argument
+    : (identifier ':')? expression
+    ;
+
+
+all_member_modifier
+    : PUBLIC
+    | PROTECTED
+    | PRIVATE
+    | VOLATILE
+    | VIRTUAL
+    | SEALED
+    | OVERRIDE
+    | ABSTRACT
+    ;
+
+
+
+
+arg_declaration
+    : base_type identifier ('=' expression)?
+    ;
+
+variable_assignment
+    : identifier '=' expression 
+    ;
+
+
+base_type
+    : simple_type
+    | class_type 
+    | VOID '*'
+    ;
+
+simple_type
+    : BOOL
+    | numeric_type
+    ;
+
+numeric_type
+    : integral_type
+    | floating_point_type
+    | DECIMAL
+    ;
+
+integral_type
+    : SHORT
+    | CHAR
+    | INT
+    | LONG
+    ;
+
+floating_point_type
+    : FLOAT
+    | DOUBLE
+    ;
+
+
+boolean_literal
+    : TRUE
+    | FALSE
+    ;
+
+keyword
+    : ABSTRACT
+    | BOOL
+    | CATCH
+    | CLASS
+    | FALSE
+    | FLOAT
+    | FOR
+    | FOREACH
+    | INT
+    | LONG
+    | OVERRIDE
+    | PRIVATE
+    | PROTECTED
+    | PUBLIC
+    | RETURN
+    | STRING
+    | THROW
+    | TRUE
+    | TRY
+    | VOID
+    ;
