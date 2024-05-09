@@ -74,7 +74,7 @@ all_member_modifier
 
 
 expression
-    : value? SEMICOLON
+    : value SEMICOLON
     ;
 
 value
