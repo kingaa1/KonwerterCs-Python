@@ -39,6 +39,10 @@ variable_declaration
     : (variable_type | VAR) identifier (EQUALS expression)? 
     ;
 
+variable_assignment
+    : identifier EQUAL expression
+    ;
+
 variable_type
     : BOOL
     | DECIMAL
@@ -66,9 +70,6 @@ all_member_modifier
 
 
 
-variable_assignment
-    : identifier EQUAL expression
-    ;
 
 
 
