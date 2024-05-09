@@ -1,6 +1,7 @@
 parser grammar CSharpParser;
 
 
+
 program
     : (declaration)* EOF
     ;
@@ -9,10 +10,10 @@ declaration
     :  function_definition | class_definition | statement
     ;
 
-
-
 function_definition  
-    : (variable_type | VOID) identifier LEFTROUND RIGHTROUND LEFTCURLY (statement | function_declaration)* RIGHTCURLY
+    : (variable_type | VOID) identifier LEFTROUND RIGHTROUND LEFTCURLY 
+      (statement | function_declaration)*  RIGHTCURLY   
+       // można ewentualnie rozbić na wiele przypadków, tak aby typ zwracany pasował do typu funkcji
     ;
 
 
@@ -53,93 +54,23 @@ variable_type
 
 
 class_declaration
-    : CLASS identifier OPEN_BRACE (class_member_declarations)+ CLOSE_BRACE 
-    ;
-
-
-class_member_declaration
-    : attributes? all_member_modifiers?  ////////////////////////////
-    ;
-
-attributes
-    : attribute_section+              ///////////////////////
-    ;
-
-attribute_section
-    : '[' (attribute_target ':')? attribute_list ','? ']'
-    ;
-
-attribute_target
-    : keyword
-    | identifier
-    ;
-
-attribute_list
-    : attribute (',' attribute)*
-    ;
-
-attribute
-    :  (
-        OPEN_PARENS (attribute_argument (',' attribute_argument)*)? CLOSE_PARENS
-    )?
-    ;
-
-attribute_argument
-    : (identifier ':')? expression
+    : class_type CLASS identifier LEFTCURLY 
+      (all_member_modifier? function_definition | all_member_modifier? variable_declaration SEMICOLON)+ RIGHTCURLY 
     ;
 
 
 all_member_modifier
     : PUBLIC
     | PROTECTED
-    | PRIVATE
-    | VOLATILE
-    | VIRTUAL
-    | SEALED
-    | OVERRIDE
-    | ABSTRACT
+    | PRIVATE 
     ;
 
 
-
-
-arg_declaration
-    : base_type identifier ('=' expression)?
-    ;
 
 variable_assignment
-    : identifier '=' expression 
+    : identifier EQUALS expression
     ;
 
-
-base_type
-    : simple_type
-    | class_type 
-    | VOID '*'
-    ;
-
-simple_type
-    : BOOL
-    | numeric_type
-    ;
-
-numeric_type
-    : integral_type
-    | floating_point_type
-    | DECIMAL
-    ;
-
-integral_type
-    : SHORT
-    | CHAR
-    | INT
-    | LONG
-    ;
-
-floating_point_type
-    : FLOAT
-    | DOUBLE
-    ;
 
 
 boolean_literal
@@ -147,25 +78,27 @@ boolean_literal
     | FALSE
     ;
 
-keyword
-    : ABSTRACT
-    | BOOL
-    | CATCH
-    | CLASS
-    | FALSE
-    | FLOAT
-    | FOR
-    | FOREACH
-    | INT
-    | LONG
-    | OVERRIDE
-    | PRIVATE
-    | PROTECTED
-    | PUBLIC
-    | RETURN
-    | STRING
-    | THROW
-    | TRUE
-    | TRY
-    | VOID
+expression
+    : rvalue?
     ;
+
+rvalue
+    : LEFTROUND rvalue RIGHTROUND
+    | lvalue LeftRound expression RightRound
+    | (ADD | SUB ) rvalue
+    | NOT rvalue  
+    | rvalue (MULT | DIV | MOD) rvalue
+    | rvalue (ADD | SUB) rvalue
+    | rvalue (LESS | LESSOREQUAL | GREATER | GREATEROREQUAL) rvalue
+    | rvalue (EQUAL | NOTEQUAL) rvalue
+    | rvalue AND rvalue
+    | rvalue OR rvalue
+    | lvalue ASSIGN rvalue
+    | rvalue COMMA rvalue
+    | lvalue
+    | IntLiteral
+    | FloatLiteral
+    | CharLiteral
+    | Identifier
+    ;
+
