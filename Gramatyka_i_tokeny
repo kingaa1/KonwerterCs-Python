@@ -73,23 +73,23 @@ variable_assignment
 
 
 expression
-    : value?
+    : value? SEMICOLON
     ;
 
 value
     : LEFTROUND value RIGHTROUND
     | NOT value  
+    | value (EQUAL | NOTEQUAL) value
     | value (MULT | DIV | MOD) value
     | value (ADD | SUB) value
     | value (LESS | LESSOREQUAL | GREATER | GREATEROREQUAL) value
-    | value (EQUAL | NOTEQUAL) value
     | value AND value
     | value OR value
     | value ASSIGN value
     | value COMMA value
     | INTLIT
-    | BOOLLIT
     | FLOATLIT
+    | BOOLLIT
     | CHARLIT
     | IDENTIFIER
     ;
