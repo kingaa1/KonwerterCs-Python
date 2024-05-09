@@ -2,59 +2,60 @@ parser grammar CSharpParser;
 
 
 program
-    : (declaration | statement)* EOF
+    : (declaration)* EOF
     ;
 
 declaration
-    : variable_declaration | function_declaration | class_declaration | statement  // wykasować statement
+    :  function_definition | class_definition | statement
     ;
 
 
 
-function_declaration    // dodać definicję, usunąć deklarację
-    : function_header function_body
+function_definition  
+    : (variable_type | VOID) identifier LEFTROUND RIGHTROUND LEFTCURLY (statement | function_declaration)* RIGHTCURLY
     ;
 
-function_header
-    : return_type identifier OPEN_PARENS CLOSE_PARENS
-    ;
-
-function_body
-    : block';'
-    ;
-
-block
-    : OPEN_BRACE statement* CLOSE_BRACE  
-    ;
 
 statement
-    : variable_declaration ';'
-    | variable_assignment ';'
+    : variable_declaration SEMICOLON
+    | variable_assignment SEMICOLON
+    | IF LEFTROUND expression RIGHTROUND LEFTCURLY statement* RIGHTCURLY
+        (ELSE LEFTCURLY statement* RIGHTCURLY)?
+    | WHILE LEFTROUND expression RIGHTROUND LEFTCURLY statement* RIGHTCURLY
+    | DO LEFTCURLY statement* RIGHTCURLY
+        WHILE LEFTROUND expression RIGHTROUND
+        SEMICOLON
+    | FOR LEFTROUND
+        variable_declaration SEMICOLON
+        expression SEMICOLON
+        expression RIGHTROUND
+        statement
+    | RETURN expression SEMICOLON
+    | expression SEMICOLON
     ;
 
 
 variable_declaration
-    : variable_type identifier ('=' expression)? 
+    : (variable_type | VAR) identifier (EQUALS expression)? 
     ;
 
 variable_type
-    : VAR
-    | base_type
+    : BOOL
+    | DECIMAL
+    | SHORT
+    | CHAR
+    | INT
+    | LONG
+    | FLOAT
+    | DOUBLE
     ;
 
 
 
 class_declaration
-    : CLASS identifier class_body ';'?
+    : CLASS identifier OPEN_BRACE (class_member_declarations)+ CLOSE_BRACE 
     ;
 
-class_body
-    : OPEN_BRACE class_member_declarations? CLOSE_BRACE
-    ;
-
-class_member_declarations
-    : class_member_declaration+
-    ;
 
 class_member_declaration
     : attributes? all_member_modifiers?  ////////////////////////////
