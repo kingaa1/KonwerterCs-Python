@@ -102,3 +102,27 @@ rvalue
     | Identifier
     ;
 
+
+
+ADD             : '+';
+SUBSTRACT       : '-';
+MULTIPLY        : '*';
+DIVIDE          : '/';
+
+EQUAL           : '==';
+NOTEQUAL        : '!=';
+LESS            : '<';
+LESSOREQUAL     : '<=';
+GREATER         : '>';
+GREATEROREQUAL  : '>=';
+
+AND             : '&&';
+OR              : '||';
+NOT             : '!';
+
+LEFTROUND       : '(';
+RIGHTROUND      : ')';
+LEFTCURLY       : '{';
+RIGHTCURLY      : '}';
+
+SEMICOLON       : ';';
