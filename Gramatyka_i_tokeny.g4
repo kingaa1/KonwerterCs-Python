@@ -11,10 +11,13 @@ declaration
     ;
 
 function_definition  
-    : (variable_type | VOID) identifier LEFTROUND RIGHTROUND LEFTCURLY 
+    : (variable_type | VOID) IDENTIFIER LEFTROUND RIGHTROUND LEFTCURLY 
       (statement | function_declaration)*  RIGHTCURLY   
     ;
 
+function_declaration
+    : identifier  LEFTROUND RIGHTROUND SEMICOLON
+    ;
 
 statement
     : variable_declaration SEMICOLON
@@ -36,11 +39,11 @@ statement
 
 
 variable_declaration
-    : (variable_type | VAR) identifier (EQUALS expression)? 
+    : (variable_type | VAR) IDENTIFIER (EQUALS expression)? 
     ;
 
 variable_assignment
-    : identifier EQUAL expression
+    : IDENTIFIER EQUAL expression
     ;
 
 variable_type
@@ -57,7 +60,7 @@ variable_type
 
 
 class_definition
-    : class_type CLASS identifier LEFTCURLY 
+    : class_type CLASS IDENTIFIER LEFTCURLY 
       (all_member_modifier? function_definition | all_member_modifier? variable_declaration SEMICOLON)+ RIGHTCURLY 
     ;
 
