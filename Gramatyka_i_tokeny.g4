@@ -16,7 +16,7 @@ function_definition
     ;
 
 function_declaration
-    : identifier  LEFTROUND RIGHTROUND SEMICOLON
+    : IDENTIFIER  LEFTROUND RIGHTROUND SEMICOLON
     ;
 
 statement
@@ -60,7 +60,7 @@ variable_type
 
 
 class_definition
-    : class_type CLASS IDENTIFIER LEFTCURLY 
+    : all_member_modifier CLASS IDENTIFIER LEFTCURLY 
       (all_member_modifier? function_definition | all_member_modifier? variable_declaration SEMICOLON)+ RIGHTCURLY 
     ;
 
