@@ -1,7 +1,7 @@
-parser grammar CSharpParser;
+grammar Gramatyka_i_tokeny;
 
 
-
+// Parser rules
 program
     : (declaration)* EOF
     ;
@@ -72,10 +72,6 @@ all_member_modifier
     ;
 
 
-
-
-
-
 expression
     : value SEMICOLON
     ;
@@ -98,13 +94,16 @@ value
     | IDENTIFIER
     ;
 
+identifier: IDENTIFIER;
 
+
+// Lexer rules
 IDENTIFIER      : [a-zA-Z_] [a-zA-Z_0-9]*;
 CHARLIT     : '\'' (~['\r\n] | '\\\'') '\'';
 STRINGLIT   : '"' (~["\r\n] | '\\"')+ '"';
 INTLIT      : [0-9]+;
 FLOATLIT    : [0-9]+ '.' [0-9]+;
-BOOLLIT     : (true | false);
+BOOLLIT     : (True | False);
 
 IF              : 'if';
 ELSE            : 'else';
