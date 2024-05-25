@@ -103,7 +103,7 @@ CHARLIT     : '\'' (~['\r\n] | '\\\'') '\'';
 STRINGLIT   : '"' (~["\r\n] | '\\"')+ '"';
 INTLIT      : [0-9]+;
 FLOATLIT    : [0-9]+ '.' [0-9]+;
-BOOLLIT     : (True | False);
+BOOLLIT     : ('true' | 'false');
 
 IF              : 'if';
 ELSE            : 'else';
