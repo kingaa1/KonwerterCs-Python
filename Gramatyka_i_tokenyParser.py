@@ -232,6 +232,12 @@ class Gramatyka_i_tokenyParser ( Parser ):
             if hasattr( listener, "exitProgram" ):
                 listener.exitProgram(self)
 
+        def accept(self, visitor:ParseTreeVisitor):
+            if hasattr( visitor, "visitProgram" ):
+                return visitor.visitProgram(self)
+            else:
+                return visitor.visitChildren(self)
+
 
 
 
@@ -292,6 +298,12 @@ class Gramatyka_i_tokenyParser ( Parser ):
         def exitRule(self, listener:ParseTreeListener):
             if hasattr( listener, "exitDeclaration" ):
                 listener.exitDeclaration(self)
+
+        def accept(self, visitor:ParseTreeVisitor):
+            if hasattr( visitor, "visitDeclaration" ):
+                return visitor.visitDeclaration(self)
+            else:
+                return visitor.visitChildren(self)
 
 
 
@@ -385,6 +397,12 @@ class Gramatyka_i_tokenyParser ( Parser ):
         def exitRule(self, listener:ParseTreeListener):
             if hasattr( listener, "exitFunction_definition" ):
                 listener.exitFunction_definition(self)
+
+        def accept(self, visitor:ParseTreeVisitor):
+            if hasattr( visitor, "visitFunction_definition" ):
+                return visitor.visitFunction_definition(self)
+            else:
+                return visitor.visitChildren(self)
 
 
 
@@ -480,6 +498,12 @@ class Gramatyka_i_tokenyParser ( Parser ):
         def exitRule(self, listener:ParseTreeListener):
             if hasattr( listener, "exitFunction_declaration" ):
                 listener.exitFunction_declaration(self)
+
+        def accept(self, visitor:ParseTreeVisitor):
+            if hasattr( visitor, "visitFunction_declaration" ):
+                return visitor.visitFunction_declaration(self)
+            else:
+                return visitor.visitChildren(self)
 
 
 
@@ -588,6 +612,12 @@ class Gramatyka_i_tokenyParser ( Parser ):
         def exitRule(self, listener:ParseTreeListener):
             if hasattr( listener, "exitStatement" ):
                 listener.exitStatement(self)
+
+        def accept(self, visitor:ParseTreeVisitor):
+            if hasattr( visitor, "visitStatement" ):
+                return visitor.visitStatement(self)
+            else:
+                return visitor.visitChildren(self)
 
 
 
@@ -806,6 +836,12 @@ class Gramatyka_i_tokenyParser ( Parser ):
             if hasattr( listener, "exitVariable_declaration" ):
                 listener.exitVariable_declaration(self)
 
+        def accept(self, visitor:ParseTreeVisitor):
+            if hasattr( visitor, "visitVariable_declaration" ):
+                return visitor.visitVariable_declaration(self)
+            else:
+                return visitor.visitChildren(self)
+
 
 
 
@@ -879,6 +915,12 @@ class Gramatyka_i_tokenyParser ( Parser ):
             if hasattr( listener, "exitVariable_assignment" ):
                 listener.exitVariable_assignment(self)
 
+        def accept(self, visitor:ParseTreeVisitor):
+            if hasattr( visitor, "visitVariable_assignment" ):
+                return visitor.visitVariable_assignment(self)
+            else:
+                return visitor.visitChildren(self)
+
 
 
 
@@ -944,6 +986,12 @@ class Gramatyka_i_tokenyParser ( Parser ):
         def exitRule(self, listener:ParseTreeListener):
             if hasattr( listener, "exitVariable_type" ):
                 listener.exitVariable_type(self)
+
+        def accept(self, visitor:ParseTreeVisitor):
+            if hasattr( visitor, "visitVariable_type" ):
+                return visitor.visitVariable_type(self)
+            else:
+                return visitor.visitChildren(self)
 
 
 
@@ -1027,6 +1075,12 @@ class Gramatyka_i_tokenyParser ( Parser ):
         def exitRule(self, listener:ParseTreeListener):
             if hasattr( listener, "exitClass_definition" ):
                 listener.exitClass_definition(self)
+
+        def accept(self, visitor:ParseTreeVisitor):
+            if hasattr( visitor, "visitClass_definition" ):
+                return visitor.visitClass_definition(self)
+            else:
+                return visitor.visitChildren(self)
 
 
 
@@ -1126,6 +1180,12 @@ class Gramatyka_i_tokenyParser ( Parser ):
             if hasattr( listener, "exitAll_member_modifier" ):
                 listener.exitAll_member_modifier(self)
 
+        def accept(self, visitor:ParseTreeVisitor):
+            if hasattr( visitor, "visitAll_member_modifier" ):
+                return visitor.visitAll_member_modifier(self)
+            else:
+                return visitor.visitChildren(self)
+
 
 
 
@@ -1176,6 +1236,12 @@ class Gramatyka_i_tokenyParser ( Parser ):
         def exitRule(self, listener:ParseTreeListener):
             if hasattr( listener, "exitExpression" ):
                 listener.exitExpression(self)
+
+        def accept(self, visitor:ParseTreeVisitor):
+            if hasattr( visitor, "visitExpression" ):
+                return visitor.visitExpression(self)
+            else:
+                return visitor.visitChildren(self)
 
 
 
@@ -1292,6 +1358,12 @@ class Gramatyka_i_tokenyParser ( Parser ):
         def exitRule(self, listener:ParseTreeListener):
             if hasattr( listener, "exitValue" ):
                 listener.exitValue(self)
+
+        def accept(self, visitor:ParseTreeVisitor):
+            if hasattr( visitor, "visitValue" ):
+                return visitor.visitValue(self)
+            else:
+                return visitor.visitChildren(self)
 
 
 
@@ -1515,6 +1587,12 @@ class Gramatyka_i_tokenyParser ( Parser ):
         def exitRule(self, listener:ParseTreeListener):
             if hasattr( listener, "exitIdentifier" ):
                 listener.exitIdentifier(self)
+
+        def accept(self, visitor:ParseTreeVisitor):
+            if hasattr( visitor, "visitIdentifier" ):
+                return visitor.visitIdentifier(self)
+            else:
+                return visitor.visitChildren(self)
 
 
 
