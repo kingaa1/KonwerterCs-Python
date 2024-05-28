@@ -8,5 +8,11 @@ def main():
     lexer = Gramatyka_i_tokenyLexer(input_stream)
     token_stream = CommonTokenStream(lexer)
     parser = Gramatyka_i_tokenyParser(token_stream)
-    tree = parser
+    tree = parser.program()
+    
+    result = tree.parser()
+    return result
+
+r = main()
+print(r)
 
