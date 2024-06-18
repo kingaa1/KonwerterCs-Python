@@ -26,7 +26,7 @@ class CSharpToPythonVisitor(CssGramatykaVisitor):
 
 
     def visitFunctionDecDef(self, ctx: CssGramatykaParser.FunctionDecDefContext):  ########
-        func_name = str(ctx.Identifier())                # ctx.Identifier().getText()   # 0
+        func_name = str(ctx.Identifier(0))                # ctx.Identifier().getText()   # 0
         params = []
 
         if ctx.type_(0):
@@ -160,7 +160,17 @@ class CSharpToPythonVisitor(CssGramatykaVisitor):
         return ""
 
     def visitAssignOperator(self, ctx: CssGramatykaParser.AssignOperatorContext):
-        return ctx.getText()
+        if ctx.Assign():
+            return '='
+        if ctx.AssignAdd():
+            return '+='
+        if ctx.AssignSubtract():
+            return '-='
+        if ctx.AssignMultiply():
+            return '*='
+        if ctx.AssignDivide():
+            return '/='
+        return ""
 
 
 
