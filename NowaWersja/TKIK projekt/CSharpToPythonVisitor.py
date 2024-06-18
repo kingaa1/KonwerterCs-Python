@@ -25,15 +25,17 @@ class CSharpToPythonVisitor(CssGramatykaVisitor):
     
 
 
-    def visitFunctionDecDef(self, ctx: CssGramatykaParser.FunctionDecDefContext, tabs):  ########
-        func_name = str(ctx.Identifier())                # ctx.Identifier().getText()   # 0
+    def visitFunctionDecDef(self, ctx: CssGramatykaParser.FunctionDecDefContext):  ########
+        func_name = str(ctx.Identifier(0))                # ctx.Identifier().getText()   # 0
         params = []
 
         if ctx.type_(0):
+            # dodać iterację ?
             param_name =  str(ctx.Identifier(1))                        #  ctx.Identifier().getText() # 1
             params.append(f"{param_name}")  # Ignore type for Python
         func_body = self.visit(ctx.statement()) if ctx.statement() else "pass"
-        return f"def {func_name}({', '.join(params)}):\n\t{func_body.replace('\n', '\n\t')}"
+        func_body_formatted = func_body.replace('\n', '\n\t')
+        return f"def {func_name}({', '.join(params)}):\n\t{func_body_formatted}"
 
 
 
@@ -56,24 +58,24 @@ class CSharpToPythonVisitor(CssGramatykaVisitor):
         default = True
         for i in range(len(ctx.children)):
             if default and object_types[i] != "TerminalNodeImpl": 
-                    func = getattr(CSharpToPythonVisitor, "visit"+object_types[i].replace("Context", ""))
-                    if "visitFunctionDecDef" in str(func):  # + DecDef
-                        tabs_ = ""
-                        for i in range(tabs):
-                            tabs_ += "    "
-                        print(tabs_, end="")
-                        #print("def ", end="")
-                        CSharpToPythonVisitor.visitFunctionDecDef(self, ctx.children[i])
-                    elif "visitVariableDecDef" in str(func):   # + DecDef
-                        tabs_ = ""
-                        for i in range(tabs):
-                            tabs_ += "    "
-                        print(tabs_, end="")
-                        print(CSharpToPythonVisitor.visitVariableDecDef(self, ctx.children[i]))
-                        func(self, ctx.children[i])
-                        print()
-                    elif "visitStatement" in str(func):
-                        print(CSharpToPythonVisitor.visitStatement(self, ctx.children[i]))
+                func = getattr(CSharpToPythonVisitor, "visit"+object_types[i].replace("Context", ""))
+                if "visitFunctionDecDef" in str(func):  # + DecDef
+                    tabs_ = ""
+                    for i in range(tabs):
+                        tabs_ += "    "
+                    print(tabs_, end="")
+                    #print("def ", end="")
+                    CSharpToPythonVisitor.visitFunctionDecDef(self, ctx.children[i])
+                elif "visitVariableDecDef" in str(func):   # + DecDef
+                    tabs_ = ""
+                    for i in range(tabs):
+                        tabs_ += "    "
+                    print(tabs_, end="")
+                    print(CSharpToPythonVisitor.visitVariableDecDef(self, ctx.children[i]))
+                    func(self, ctx.children[i])
+                    print()
+                elif "visitStatement" in str(func):
+                    print(CSharpToPythonVisitor.visitStatement(self, ctx.children[i]))
 
 
     def visitStatement(self, ctx: CssGramatykaParser.StatementContext):
@@ -160,7 +162,17 @@ class CSharpToPythonVisitor(CssGramatykaVisitor):
         return ""
 
     def visitAssignOperator(self, ctx: CssGramatykaParser.AssignOperatorContext):
-        return ctx.getText()
+        if ctx.Assign():
+            return '='
+        if ctx.AssignAdd():
+            return '+='
+        if ctx.AssignSubtract():
+            return '-='
+        if ctx.AssignMultiply():
+            return '*='
+        if ctx.AssignDivide():
+            return '/='
+        return ""
 
 
 
