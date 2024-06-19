@@ -38,7 +38,7 @@ class CSharpToPythonVisitor(CssGramatykaVisitor):
         
         func_body = self.visit(ctx.statement()) if ctx.statement() else "pass"
         func_body_formatted = func_body.replace('\n', '\n    ')
-        return f"def {func_name}({', '.join(params)}):\n\t{func_body_formatted}"
+        return f"def {func_name}({', '.join(params)}):\n    {func_body_formatted}"
 
     def visitClassDecDef(self, ctx: CssGramatykaParser.ClassDecDefContext, tabs=0):
         class_name = str(ctx.Identifier())
