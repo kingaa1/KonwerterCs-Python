@@ -80,6 +80,15 @@ class CssGramatykaListener(ParseTreeListener):
         pass
 
 
+    # Enter a parse tree produced by CssGramatykaParser#assignOperator.
+    def enterAssignOperator(self, ctx:CssGramatykaParser.AssignOperatorContext):
+        pass
+
+    # Exit a parse tree produced by CssGramatykaParser#assignOperator.
+    def exitAssignOperator(self, ctx:CssGramatykaParser.AssignOperatorContext):
+        pass
+
+
     # Enter a parse tree produced by CssGramatykaParser#value.
     def enterValue(self, ctx:CssGramatykaParser.ValueContext):
         pass
@@ -95,15 +104,6 @@ class CssGramatykaListener(ParseTreeListener):
 
     # Exit a parse tree produced by CssGramatykaParser#type_.
     def exitType_(self, ctx:CssGramatykaParser.Type_Context):
-        pass
-
-
-    # Enter a parse tree produced by CssGramatykaParser#assignOperator.
-    def enterAssignOperator(self, ctx:CssGramatykaParser.AssignOperatorContext):
-        pass
-
-    # Exit a parse tree produced by CssGramatykaParser#assignOperator.
-    def exitAssignOperator(self, ctx:CssGramatykaParser.AssignOperatorContext):
         pass
 
 

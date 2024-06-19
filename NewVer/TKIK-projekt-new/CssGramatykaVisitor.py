@@ -49,6 +49,11 @@ class CssGramatykaVisitor(ParseTreeVisitor):
         return self.visitChildren(ctx)
 
 
+    # Visit a parse tree produced by CssGramatykaParser#assignOperator.
+    def visitAssignOperator(self, ctx:CssGramatykaParser.AssignOperatorContext):
+        return self.visitChildren(ctx)
+
+
     # Visit a parse tree produced by CssGramatykaParser#value.
     def visitValue(self, ctx:CssGramatykaParser.ValueContext):
         return self.visitChildren(ctx)
@@ -56,11 +61,6 @@ class CssGramatykaVisitor(ParseTreeVisitor):
 
     # Visit a parse tree produced by CssGramatykaParser#type_.
     def visitType_(self, ctx:CssGramatykaParser.Type_Context):
-        return self.visitChildren(ctx)
-
-
-    # Visit a parse tree produced by CssGramatykaParser#assignOperator.
-    def visitAssignOperator(self, ctx:CssGramatykaParser.AssignOperatorContext):
         return self.visitChildren(ctx)
 
 

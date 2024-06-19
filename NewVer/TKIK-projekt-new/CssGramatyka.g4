@@ -23,14 +23,13 @@ variableDecDef
 
 functionDecDef
     :   Static? type_ Identifier 
-        LeftRound (type_ Identifier)? RightRound
+        LeftRound (type_ Identifier)* RightRound
         (Semicolon | statement)
     ;
 
 classDecDef
     : Class Identifier
-        (LeftCurly (variableDecDef | functionDecDef)* RightCurly)?  //////////////////
-        Semicolon
+        (LeftCurly (variableDecDef | functionDecDef)* RightCurly)?  
     ;
 
 
@@ -58,18 +57,26 @@ expression
     : LeftRound expression RightRound
     | (Add | Subtract | Not ) expression
     | LeftRound type_ RightRound expression
-    | expression (Add | Substract | Multiply | Divide | Modulo) expression
+    | expression (Add | Subtract | Multiply | Divide | Modulo) expression
     | expression (Less | LessOrEqual | Greater | GreaterOrEqual) expression
     | expression (Equal | NotEqual) expression
     | expression And expression
     | expression Or expression
     | value assignOperator expression
     | value LeftRound expression? RightRound 
+    | value
     | CharLiteral
     | StringLiteral
     | IntLiteral
     | FloatLiteral
-    | value
+    ;
+
+assignOperator
+    : Assign
+    | AssignAdd
+    | AssignSubtract
+    | AssignMultiply
+    | AssignDivide
     ;
 
 
@@ -81,7 +88,7 @@ value
 
 type_
     : type_ LeftSquare IntLiteral RightSquare
-    | Char            //     | Class Identifier
+    | Char           
     | Int
     | Long
     | Double
@@ -90,13 +97,14 @@ type_
     | Identifier
     ;
 
-assignOperator
-    : Assign
-    | AssignAdd
-    | AssignSubtract
-    | AssignMultiply
-    | AssignDivide
-    ;
+
+Static          : 'static';
+Char            : 'char';
+Int             : 'int';
+Float           : 'float';
+Long            : 'long';
+Double          : 'double';
+Void            : 'void';
 
 Using         : 'using';
 If              : 'if';
@@ -106,14 +114,6 @@ While           : 'while';
 Do              : 'do';
 Return          : 'return';
 Class           : 'class';
-
-Char            : 'char';
-Int             : 'int';
-Long            : 'long';
-Float           : 'float';
-Double          : 'double';
-Void            : 'void';
-Static          : 'static';
 
 Identifier      : [a-zA-Z_] [a-zA-Z_0-9]*;
 CharLiteral     : '\'' (~['\r\n] | '\\\'') '\'';
