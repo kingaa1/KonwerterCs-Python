@@ -63,12 +63,11 @@ class CSharpToPythonVisitor(CssGramatykaVisitor):
             statements = "\n".join(self.visit(child) for child in ctx.children if child not in [ctx.LeftCurly(), ctx.RightCurly()])
             return f"{statements}"
         if ctx.If():
-            if ctx.If():
-                condition = self.visit(ctx.expression(0))
-                then_stmt = self.visit(ctx.statement(0)).replace("\n", "\n    ")
-                else_stmt = self.visit(ctx.statement(1)).replace("\n", "\n    ") if ctx.Else() else ""
-                return f"if {condition}:\n    {then_stmt}\nelse:\n    {else_stmt}"
-        if ctx.While():
+            condition = self.visit(ctx.expression(0))
+            then_stmt = self.visit(ctx.statement(0)).replace("\n", "\n    ")
+            else_stmt = self.visit(ctx.statement(1)).replace("\n", "\n    ") if ctx.Else() else ""
+            return f"if {condition}:\n    {then_stmt}\nelse:\n    {else_stmt}"
+        if ctx.While() and ctx.expression(0) and ctx.statement(0):
             condition = self.visit(ctx.expression(0))
             body = self.visit(ctx.statement(0)).replace("\n", "\n\t")
             return f"while ({condition}):\n\t{body}"
@@ -77,9 +76,15 @@ class CSharpToPythonVisitor(CssGramatykaVisitor):
             condition = self.visit(ctx.expression(0))
             return f"while True:\n\t{body}\n\tif not ({condition}):\n\t\tbreak"
         if ctx.For():
-            init = self.visit(ctx.expression(0))
-            condition = self.visit(ctx.expression(1))
-            increment = self.visit(ctx.expression(2))
+            if ctx.variableDecDef():
+                init = self.visit(ctx.variableDecDef(0))
+                condition = self.visit(ctx.expression(0))
+                increment = self.visit(ctx.expression(1))
+            else:
+                init = self.visit(ctx.expression(0))
+            # init = self.visit(ctx.variableDecDef()) if ctx.variableDecDef() else self.visit(ctx.expression(0))
+                condition = self.visit(ctx.expression(1))
+                increment = self.visit(ctx.expression(2))
             body = self.visit(ctx.statement(0)).replace("\n", "\n    ")
             if init.startswith("int"):
                 var_name, start = init.replace("int ", "").split("=")
@@ -87,11 +92,14 @@ class CSharpToPythonVisitor(CssGramatykaVisitor):
                 end = condition.split("<")[1].strip()
                 return f"for {var_name.strip()} in range({start}, {end}):\n    {body}\n    {increment}"
             else:
-                return f"{init}\nwhile {condition}:\n    {body}\n    {increment}"
+                if body:
+                    return f"{init}\nwhile {condition}:\n    {body}\n    {increment}"
+                else:
+                    return f"{init}\nwhile {condition}:\n    {increment}"
         if ctx.Return():
             return f"return {self.visit(ctx.expression(0))}" if ctx.expression(0) else "return"
         if ctx.expression():
-            return self.visit(ctx.expression()) + "\n"
+            return self.visit(ctx.expression(0)) + "\n"
         return ""
 
     def visitExpression(self, ctx: CssGramatykaParser.ExpressionContext):
