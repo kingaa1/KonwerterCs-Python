@@ -21,6 +21,7 @@ class CSharpToPythonVisitor(CssGramatykaVisitor):
         var_value = self.visit(ctx.expression()) if ctx.expression() else "None"
         return f"{var_name} = {var_value}"
 
+
     def visitFunctionDecDef(self, ctx: CssGramatykaParser.FunctionDecDefContext):
         func_name = str(ctx.Identifier(0))
         params = []
@@ -40,6 +41,7 @@ class CSharpToPythonVisitor(CssGramatykaVisitor):
         func_body_formatted = func_body.replace('\n', '\n    ')
         return f"def {func_name}({', '.join(params)}):\n    {func_body_formatted}"
 
+
     def visitClassDecDef(self, ctx: CssGramatykaParser.ClassDecDefContext, tabs=0):
         class_name = str(ctx.Identifier())
         result = [f"class {class_name}:"]
@@ -57,6 +59,7 @@ class CSharpToPythonVisitor(CssGramatykaVisitor):
         
         self.result.append("\n".join(result))
         return ""
+
 
     def visitStatement(self, ctx: CssGramatykaParser.StatementContext):
         if ctx.LeftCurly() and ctx.RightCurly():
@@ -101,6 +104,7 @@ class CSharpToPythonVisitor(CssGramatykaVisitor):
         if ctx.expression():
             return self.visit(ctx.expression(0)) + "\n"
         return ""
+
 
     def visitExpression(self, ctx: CssGramatykaParser.ExpressionContext):
         # Handle parenthesized expressions
