@@ -39,7 +39,7 @@ This project is a simplified converter that transforms code from **C#** to **Pyt
 <img width="314" alt="image" src="https://github.com/user-attachments/assets/fe7237fe-12f8-40d6-b15a-c6285f65aa4d">
 
 2. **Input C# Code** 
-   Paste or upload your C# code into the provided text field or file input. <br/>
+   Paste or upload your C# code into the provided text field. <br/>
 <img width="311" alt="image" src="https://github.com/user-attachments/assets/a0a08535-8143-4c4a-9499-86472936a033">
 
 3. **Convert to Python**  
@@ -53,18 +53,16 @@ This project is a simplified converter that transforms code from **C#** to **Pyt
 
 The final version of the project is located in the **`NewVer`** folder.
 
----
-
-## License
-
-This project is distributed under the MIT License. See the [LICENSE](LICENSE) file for details.
 
 ---
 
-## Author
+## Authors
 
-- **Your Name**  
-  - GitHub: [Your GitHub Profile](https://github.com/your-profile)  
-  - Email: [Your Email Address]  
+- **Kamila Błaszczyna**  
+  - [GitHub](https://github.com/kamilabla)  
+  - Email [kamilablaszczyna@gmail.com]
+
+- **Kinga Alibożek**  
+  - [GitHub](https://github.com/kingaa1)   
 
 Feel free to reach out for any questions, suggestions, or feedback!
