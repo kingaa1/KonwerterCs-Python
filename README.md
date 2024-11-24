@@ -59,10 +59,10 @@ The final version of the project is located in the **`NewVer`** folder.
 ## Authors
 
 - **Kamila Błaszczyna**  
-  - [GitHub](https://github.com/kamilabla)  
-  - Email [kamilablaszczyna@gmail.com]
+  - [GitHub: kamilabla](https://github.com/kamilabla)  
+  - Email: kamilablaszczyna@gmail.com
 
 - **Kinga Alibożek**  
-  - [GitHub](https://github.com/kingaa1)   
+  - [GitHub: kingaa1](https://github.com/kingaa1)   
 
 Feel free to reach out for any questions, suggestions, or feedback!
