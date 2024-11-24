@@ -1,4 +1,66 @@
-# KonwerterCs-Python
+# C# to Python Converter
 
-Konwerter z języka C# do Python'a, język implementacji: Python, używany generator parserów: ANTLR4.
-Dodatkowo dołączony został interfejs graficzny w celu ułatwienia obsługi konwertera. Końcowa wersja projektu znajduje się w folderze NewVer.
+## Project Description
+
+This project is a simplified converter that transforms code from **C#** to **Python**, implemented in **Python**. The **ANTLR4** parser generator is used for syntax handling. The application includes a graphical user interface (GUI) to simplify the usage of the converter. The final version of the project can be found in the **`NewVer`** folder.
+
+---
+
+## Features
+
+- **Code Conversion from C# to Python**  
+  Automatically transforms C# syntax into Python syntax.
+
+- **Graphical User Interface (GUI)**  
+  A user-friendly interface to facilitate using the tool without the need for command-line interaction.
+
+- **Syntax Handling with ANTLR4**  
+  Utilizes the ANTLR4 parser generator for precise parsing of C# code syntax.
+
+---
+
+## Technologies
+
+- **Python**  
+  The primary programming language used for the implementation of the converter.
+
+- **ANTLR4**  
+  A parser generator for analyzing the syntax of the source code.
+
+- **Tkinter/PyQt**  
+  (or any other GUI framework used in the project) – for building the graphical user interface.
+
+---
+
+## Usage
+
+1. **Run the Application**  
+   Navigate to the `NewVer` folder and launch the GUI application.
+
+2. **Input C# Code**  
+   Paste or upload your C# code into the provided text field or file input.
+
+3. **Convert to Python**  
+   Use the interface to start the conversion process. The output Python code will be displayed or saved to a file.
+
+---
+
+## Final Version
+
+The final version of the project is located in the **`NewVer`** folder.
+
+---
+
+## License
+
+This project is distributed under the MIT License. See the [LICENSE](LICENSE) file for details.
+
+---
+
+## Author
+
+- **Your Name**  
+  - GitHub: [Your GitHub Profile](https://github.com/your-profile)  
+  - Email: [Your Email Address]  
+
+Feel free to reach out for any questions, suggestions, or feedback!
