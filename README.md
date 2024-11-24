@@ -34,14 +34,18 @@ This project is a simplified converter that transforms code from **C#** to **Pyt
 
 ## Usage
 
-1. **Run the Application**  
-   Navigate to the `NewVer` folder and launch the GUI application.
+1. **Run the Application** 
+   Navigate to the `NewVer` folder and launch the GUI application by running main.py. <br/>
+<img width="314" alt="image" src="https://github.com/user-attachments/assets/fe7237fe-12f8-40d6-b15a-c6285f65aa4d">
 
-2. **Input C# Code**  
-   Paste or upload your C# code into the provided text field or file input.
+2. **Input C# Code** 
+   Paste or upload your C# code into the provided text field or file input. <br/>
+<img width="311" alt="image" src="https://github.com/user-attachments/assets/a0a08535-8143-4c4a-9499-86472936a033">
 
 3. **Convert to Python**  
-   Use the interface to start the conversion process. The output Python code will be displayed or saved to a file.
+   Use the interface to start the conversion process. The output Python code will be displayed below. <br/>
+<img width="314" alt="image" src="https://github.com/user-attachments/assets/b575e945-f925-4a19-9b0b-bf39e8eb32a4">
+
 
 ---
 
