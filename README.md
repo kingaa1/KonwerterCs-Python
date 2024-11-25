@@ -27,9 +27,6 @@ This project is a simplified converter that transforms code from **C#** to **Pyt
 - **ANTLR4**  
   A parser generator for analyzing the syntax of the source code.
 
-- **Tkinter/PyQt !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!**  
-  (or any other GUI framework used in the project) – for building the graphical user interface.
-
 ---
 
 ## Usage
